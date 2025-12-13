@@ -1,2 +1,82 @@
-# NLP-class-project_Platform-Prediction-for-News-Articles
-Platform Suitability Prediction for News Articles Using  Text Embeddings with Data-Integrated Label Construction
+# 뉴스 기사 유입 플랫폼 예측 모델
+(News Referrer Prediction with Text & Demographics)
+
+## 프로젝트 개요
+
+본 프로젝트는 뉴스 기사 콘텐츠의 텍스트 정보와 독자 인구통계 정보를 기반으로, 해당 기사가 어떤 플랫폼(referrer)을 통해 유입될 가능성이 높은지를 예측하는 모델을 개발하는 것을 목표로 한다.
+기사의 제목·요약 텍스트, 연령·성별 기반 독자 분포, 그리고 조회수 기반 soft label을 활용하여 플랫폼별 유입 확률을 출력하는 다중 클래스 분류 모델을 설계·학습하였다.
+
+## 데이터셋 설명
+
+본 연구에서는 데이콘(Dacon)에서 주최한 '2025 신문과 방송 독자 데이터 분석 아이디어 경진대회'에서 제공된 공식 데이터셋을 사용하였다.
+
+### 데이터 구성
+
+원본 데이터는 다음과 같은 복합 구조로 이루어져 있다.
+
+- 뉴스 기사 본문 텍스트
+
+- 월별 조회수 정보
+
+- 유입 경로(referrer) 정보
+
+- 연령·성별 기반 인구통계(demographics) 데이터
+
+본 프로젝트에서는 모델 학습에 필요한 항목을 선별·정제하여 하나의 통합 분석용 데이터셋으로 재구성하였다.
+
+### 데이터 사용 및 라이선스 
+
+데이콘(Dacon) 대회 규정에 따라 본 데이터는 아래 조건하에서 사용 가능하다.
+
+허용:
+- 대회 참여
+- 학술 연구
+- 교육 목적
+- 비영리 프로젝트
+
+제한:
+- 상업적 이용
+- 원본 데이터 재배포
+
+본 GitHub의 모든 실험은 대회 규정 및 비영리 목적을 준수하여 수행되었다.
+
+
+### 예시
+
+#### input
+```
+age_group = "10대"
+gender = "여"
+title = "10대 여성 소비 트렌드: 편의점과 패션의 변화"
+summary = "10대 여성의 소비 패턴을 분석하고 주요 플랫폼별 반응을 정리했다."
+```
+#### output
+```
+1. Google: 0.3958
+2. 네이버: 0.1487
+3. 네이버 블로그: 0.1391
+4. Daum: 0.1054
+5. AI 검색엔진: 0.0972
+6. 기타: 0.0588
+7. Bing: 0.0550
+```
+
+모델은 입력 텍스트에 대해 플랫폼별 유입 확률 분포를 출력하며, 가장 높은 확률의 플랫폼을 최종 예측값으로 사용한다
+
+### 향후 개선 방향
+
+- likes, comments 등 사용자 반응 feature 추가
+
+- multi-input 모델 구조 확장
+
+- 요약 품질 개선 및 요약 길이 실험
+
+- API 형태의 서비스 적용 가능성 검토
+
+## 참고 자료
+- Dacon: [https://dacon.io](https://dacon.io/competitions/official/236606/overview/description)
+- HuggingFace Transformers(KoELECTRA, KoBART, Ko-bigbird)
+
+## Email
+dmstjd1542@gmail.com
+
